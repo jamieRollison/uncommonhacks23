@@ -8,4 +8,6 @@ const contentSchema = new mongoose.Schema({
   },
 });
 
-export const Content = mongoose.model("Content", contentSchema);
+const Content = mongoose.model("Content", contentSchema);
+
+export { Content };

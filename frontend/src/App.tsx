@@ -1,14 +1,20 @@
-import "./App.css";
 import "./index.css";
-import HomeLoad from "./components/HomeLoad";
+import {
+  BrowserRouter, Routes, Route
+} from "react-router-dom"
+import Home from "./pages/home";
+import View from "./pages/view";
 // import AnimatedEnvelope from './components/AnimatedEnvelope'
 
 
 function App() {
   return (
-    <div className="flex justify-center">
-      <HomeLoad />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route index element={<Home/>}/> 
+        <Route path='/view' element={<View/>}/> 
+      </Routes>
+    </BrowserRouter>
   );
 }
 

@@ -6,4 +6,8 @@ router.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
+router.get('/view', (req, res) => {
+  res.send('Hello World!');
+});
+
 export default router;

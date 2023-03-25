@@ -7,7 +7,7 @@ function App() {
     <div className="App">
     <AnimatedEnvelope />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

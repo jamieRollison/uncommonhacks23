@@ -1,3 +1,4 @@
+import { ObjectId } from 'mongodb';
 import mongoose from 'mongoose';
 import { Content } from './content';
 
@@ -14,8 +15,8 @@ const noteSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  body: {
-    type: Content,
+  content: {
+    type: ObjectId,
     required: true,
   },
 });

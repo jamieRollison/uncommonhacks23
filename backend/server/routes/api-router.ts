@@ -1,53 +1,46 @@
-import express from 'express';
-import { MongoAPIError } from 'mongodb';
-import { Note, Content } from '../models';
+import express from "express";
+import { Note, Content } from "../models";
+import { NoteI, ContentI } from "../types";
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-  res.send('Hello World!');
+router.get("/", (req, res) => {
+  res.send("Hello World!");
 });
 
-router.get('/notes', async (req, res) => {
+router.get("/notes", async (req, res) => {
   try {
-  const notes = await Note.find();
-  res.json(notes);
+    const notes = await Note.find();
+    res.json(notes);
   } catch (err) {
     console.log(err);
   }
 });
 
-router.post('/notes', async (req, res) => {
+router.post("/notes", async (req, res) => {
   const { title, from, to, content } = req.body;
-  const note = new Note({
-    title,
-    from,
-    to,
-    content,
-  });
-  await note.save();
-  res.json(note);
-});
-
-router.post('/contents', async (req, res) => {
-  const { text } = req.body;
-  Content.create({ text }, (err: MongoAPIError, content: typeof Content) => {
-    if (err) {
+  if (!title || !from || !to || !content) {
+    res.status(400).send("Missing required fields");
+    return;
+  }
+  const content_id = await Content.create(content)
+    .then((content: any) => content._id)
+    .catch((err: any) => {
       console.log(err);
       res.status(500).send(err);
-    }
-    res.json(content);
-  });
-});
+    });
 
-router.get('/contents', async (req, res) => {
-  try {
-    const contents = await Content.find();
-    res.json(contents);
-  } catch (err) {
-    console.log(err);
-  }
+  Note.create({
+    ...req.body,
+    content: content_id,
+  })
+    .then((note: any) => {
+      res.json(note);
+    })
+    .catch((err: any) => {
+      console.log(err);
+      res.status(500).send(err);
+    });
 });
-
 
 export default router;

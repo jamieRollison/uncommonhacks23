@@ -10,14 +10,14 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-
-const url = process.env.MONGO_URI as string;
-console.log(url);
-mongoose.connect(url).then(() => {
-  console.log("Connected to MongoDB");
-  }).catch((err) => {
+mongoose
+  .connect(process.env.MONGO_URI as string)
+  .then(() => {
+    console.log("Connected to MongoDB");
+  })
+  .catch((err) => {
     console.log(err);
-});
+  });
 
 app.use("/api", router);
 

@@ -1,6 +1,5 @@
-import { ObjectId } from 'mongodb';
-import mongoose from 'mongoose';
-import { Content } from './content';
+import { ObjectId } from "mongodb";
+import mongoose from "mongoose";
 
 const noteSchema = new mongoose.Schema({
   title: {
@@ -21,4 +20,13 @@ const noteSchema = new mongoose.Schema({
   },
 });
 
-export const Note = mongoose.model('Note', noteSchema);
+const Note = mongoose.model("Note", noteSchema);
+
+interface NoteI {
+  title: string;
+  from: string;
+  to: string;
+  content: ObjectId;
+}
+
+export { Note, NoteI };

@@ -10,7 +10,8 @@
   "scripts": {
     "build": "rm -rf ./build && npx tsc",
     "start": "node build/index.js",
-    "dev": "ts-node-dev --respawn server/index.ts"
+    "dev": "ts-node-dev --respawn server/index.ts",
+    "format": "npx prettier --write ."
   },
   "author": "",
   "license": "ISC",
@@ -26,6 +27,7 @@
     "@types/node": "^18.15.9",
     "concurrently": "^7.6.0",
     "nodemon": "^2.0.22",
+    "prettier": "^2.8.7",
     "ts-node-dev": "^2.0.0"
   }
 }

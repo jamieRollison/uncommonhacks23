@@ -1,11 +1,10 @@
-import './App.css'
-import AnimatedEnvelope from './components/AnimatedEnvelope'
+import "./App.css";
+import AnimatedEnvelope from "./components/AnimatedEnvelope";
 
 function App() {
-
   return (
     <div className="App">
-    <AnimatedEnvelope />
+      <AnimatedEnvelope />
     </div>
   );
 }

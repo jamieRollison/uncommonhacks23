@@ -1,10 +1,17 @@
 import express from "express";
 import { Note, Content } from "../models";
 import { NoteI, ContentI } from "../types";
+import { getSentiment } from "../controllers";
 
 const router = express.Router();
 
 router.get("/", (req, res) => {
+  res.send("Hello World!");
+});
+
+router.get("/analyze/:text", (req, res) => {
+  const { text } = req.params;
+  getSentiment(text);
   res.send("Hello World!");
 });
 

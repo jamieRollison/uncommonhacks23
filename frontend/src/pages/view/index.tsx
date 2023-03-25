@@ -1,6 +1,6 @@
 import { viewNote } from "../../api"
 
-const View = async () => {
+const View: any = async () => {
     // returning text
     const note = await viewNote();
     console.log(note);

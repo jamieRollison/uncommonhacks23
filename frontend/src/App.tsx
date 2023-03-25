@@ -1,13 +1,10 @@
 import "./App.css";
-import "./index.css";
-import HomeLoad from "./components/HomeLoad";
-// import AnimatedEnvelope from './components/AnimatedEnvelope'
-
+import AnimatedEnvelope from "./components/AnimatedEnvelope";
 
 function App() {
   return (
-    <div className="flex justify-center">
-      <HomeLoad />
+    <div className="App">
+      <AnimatedEnvelope />
     </div>
   );
 }

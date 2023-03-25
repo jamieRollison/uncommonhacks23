@@ -13,7 +13,7 @@ function HomeLoad() {
         </span>
       </h1>
       <p className="text-white font-serif text-xl">
-        Welcome to what we like to call, a working progress of the internet.{" "}
+        Welcome to what we like to call, a work in progress of the internet.{" "}
         <span className="italic text-blue-300 text-6xl">Letra</span> is a place where you can share
         your thoughts, ideas, and opinions with the world, or just your next door
         neighbor.{" "}

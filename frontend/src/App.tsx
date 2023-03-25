@@ -9,7 +9,7 @@ function App() {
     <div className="flex justify-center">
       <HomeLoad />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

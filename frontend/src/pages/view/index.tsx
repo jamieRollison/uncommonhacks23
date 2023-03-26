@@ -1,7 +1,9 @@
 import { viewNote } from "../../api"
 import paperBg from "../../assets/Paper.png"
-import {useState} from "react"
+import AnimatedEnvelope from "../../components/AnimatedEnvelope";
+import Delayed from "../../components/Delayed";
 import {Content } from "../../types"
+import { useState } from "react";
 
 interface ViewProps {
     title: string,
@@ -22,7 +24,16 @@ const View = ({
         return res;
     });
 
+    const [isAnimationVisible, setIsAnimationVisible] = useState(true);
+
+    setTimeout(() => {
+        setIsAnimationVisible(false);
+    }, 8000);
+
     return (
+        <>
+        {isAnimationVisible ? <AnimatedEnvelope /> : <> </>}
+        <Delayed waitBeforeShow={8000}>
         <div className="relative text-black">
             <img src={paperBg} alt="paper background" className = "w-[600px]"/>
             <div className= "flex-col flex-wrap">
@@ -52,9 +63,10 @@ const View = ({
                     Create a letter
                 </button>
             </div>
-            {/* implement bottom buttons:
-            left = share note; right = create your own note */}
+     
         </div>
+        </Delayed>
+    </>
     )
 }
 

@@ -1,22 +1,47 @@
 import express from "express";
 import { Note, Content, Link } from "../models";
 import { negativeSentiment, shortenLink } from "../utils";
+import mongoose from "mongoose";
 
 const router = express.Router();
 
 router.get("/", (req, res) => {
+  mongoose
+  .connect(process.env.MONGO_URI as string)
+  .then(() => {
+    console.log("Connected to MongoDB");
+  })
+  .catch((err) => {
+    console.log(err);
+  });
   res.setHeader('Content-Type', 'text/html');
   res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
   res.send("Hello World!");
 });
 
 router.get("/content/:id", async (req, res) => {
+  mongoose
+  .connect(process.env.MONGO_URI as string)
+  .then(() => {
+    console.log("Connected to MongoDB");
+  })
+  .catch((err) => {
+    console.log(err);
+  });
   const { id } = req.params;
   const content = await Content.findById(id);
   res.send(content?.toJSON());
 });
 
 router.get("/notes", async (req, res) => {
+  mongoose
+  .connect(process.env.MONGO_URI as string)
+  .then(() => {
+    console.log("Connected to MongoDB");
+  })
+  .catch((err) => {
+    console.log(err);
+  });
   try {
     const notes = await Note.find();
     res.json(notes);
@@ -26,6 +51,14 @@ router.get("/notes", async (req, res) => {
 });
 
 router.post("/notes", async (req, res) => {
+  mongoose
+  .connect(process.env.MONGO_URI as string)
+  .then(() => {
+    console.log("Connected to MongoDB");
+  })
+  .catch((err) => {
+    console.log(err);
+  });
   res.setHeader('Content-Type', 'application/json');
   res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
   console.log(req.body);
@@ -72,6 +105,14 @@ router.post("/notes", async (req, res) => {
 });
 
 router.get("/notes/:id", async (req, res) => {
+  mongoose
+  .connect(process.env.MONGO_URI as string)
+  .then(() => {
+    console.log("Connected to MongoDB");
+  })
+  .catch((err) => {
+    console.log(err);
+  });
   res.setHeader('Content-Type', 'application/json');
   res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
   const { id } = req.params;
@@ -84,6 +125,14 @@ router.get("/notes/:id", async (req, res) => {
 });
 
 router.get("/content/:id", async (req, res) => {
+  mongoose
+  .connect(process.env.MONGO_URI as string)
+  .then(() => {
+    console.log("Connected to MongoDB");
+  })
+  .catch((err) => {
+    console.log(err);
+  });
   res.setHeader('Content-Type', 'application/json');
   res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
   const { id } = req.params;
@@ -96,6 +145,14 @@ router.get("/content/:id", async (req, res) => {
 });
 
 router.post("/shorten", async (req, res) => {
+  mongoose
+  .connect(process.env.MONGO_URI as string)
+  .then(() => {
+    console.log("Connected to MongoDB");
+  })
+  .catch((err) => {
+    console.log(err);
+  });
   res.setHeader('Content-Type', 'application/json');
   res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
   const { long } = req.body;
@@ -108,6 +165,14 @@ router.post("/shorten", async (req, res) => {
 });
 
 router.get("/:short", async (req, res) => {
+  mongoose
+  .connect(process.env.MONGO_URI as string)
+  .then(() => {
+    console.log("Connected to MongoDB");
+  })
+  .catch((err) => {
+    console.log(err);
+  });
   res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
   const { short } = req.params;
   if (!short) {

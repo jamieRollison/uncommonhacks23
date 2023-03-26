@@ -30,9 +30,9 @@ export const getNote = async (id: string) => {
     ...data,
     content,
   };
-}
+};
 
 export const getContent = async (id: string) => {
   const { data } = await api.get(`/content/${id}`);
   return data;
-}
+};

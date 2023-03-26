@@ -7,5 +7,5 @@ export interface Note {
   from: string;
   to: string;
   content: string;
-  font : string;
+  font: string;
 }

@@ -50,7 +50,7 @@ const View = ({
                     {/* // establish max character count */}
                     {title}
                 </h1>
-                <p className= "text-black font-libre absolute top-32 left-10 max-w-[500px] break-words">
+                <p className= "text-black font-redacted absolute top-32 left-10 max-w-[500px] break-words">
                     {content.text}
                 </p>
             </div>

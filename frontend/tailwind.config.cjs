@@ -6,8 +6,9 @@ module.exports = {
       libre: ["Libre Baskervile", "serif"],
       handrawn: ["Delicious Handrawn", "cursive"],
       alkatra: ["Alkatra", "cursive"],
-      redacted: ["Redacted Script", "cursive"],
+      redacted:["Redacted Script", "cursive"],
       roboto: ["Roboto Mono", "monoscript"],
+      DMsans: ["DM Sans", "sans-serif"],
     },
     backgroundSize: {
       auto: "auto",

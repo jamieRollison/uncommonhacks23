@@ -17,8 +17,8 @@ body {
   height: 100vh;
   width: 100%;
   display: flex;
+  margin-top: 25px;
   justify-content: center;
-  align-items: center;
   font-family: sans-serif;
 }
 
@@ -148,4 +148,56 @@ body {
   100% {
     transform: translateY(-100px);
   }
+}
+
+
+.playful span {
+  position: relative;
+  color: #b1b5d5;
+  text-shadow: 0.25px 0.25px #8068af, 0.5px 0.5px #8068af, 0.75px 0.75px #8068af, 1px 1px #8068af, 1.25px 1.25px #8068af, 1.5px 1.5px #8068af, 1.75px 1.75px #8068af, 2px 2px #8068af, 2.25px 2.25px #8068af, 2.5px 2.5px #8068af, 2.75px 2.75px #8068af, 3px 3px #8068af, 3.25px 3.25px #8068af, 3.5px 3.5px #8068af, 3.75px 3.75px #8068af, 4px 4px #8068af, 4.25px 4.25px #8068af, 4.5px 4.5px #8068af, 4.75px 4.75px #8068af, 5px 5px #8068af, 5.25px 5.25px #8068af, 5.5px 5.5px #8068af, 5.75px 5.75px #8068af, 6px 6px #8068af;
+  animation: scatter 1.75s infinite;
+}
+.playful span:nth-child(2n) {
+  color: #96c1e2;
+  text-shadow: 0.25px 0.25px #6481be, 0.5px 0.5px #6481be, 0.75px 0.75px #6481be, 1px 1px #6481be, 1.25px 1.25px #6481be, 1.5px 1.5px #6481be, 1.75px 1.75px #6481be, 2px 2px #6481be, 2.25px 2.25px #6481be, 2.5px 2.5px #6481be, 2.75px 2.75px #6481be, 3px 3px #6481be, 3.25px 3.25px #6481be, 3.5px 3.5px #6481be, 3.75px 3.75px #6481be, 4px 4px #6481be, 4.25px 4.25px #6481be, 4.5px 4.5px #6481be, 4.75px 4.75px #6481be, 5px 5px #6481be, 5.25px 5.25px #6481be, 5.5px 5.5px #6481be, 5.75px 5.75px #6481be, 6px 6px #6481be;
+  animation-delay: 0.3s;
+}
+.playful span:nth-child(3n) {
+  color: #a5a3b1;
+  text-shadow: 0.25px 0.25px #d8d39d, 0.5px 0.5px #d8d39d, 0.75px 0.75px #d8d39d, 1px 1px #d8d39d, 1.25px 1.25px #d8d39d, 1.5px 1.5px #d8d39d, 1.75px 1.75px #6EC0A9, 2px 2px #6EC0A9, 2.25px 2.25px #6EC0A9, 2.5px 2.5px #6EC0A9, 2.75px 2.75px #6EC0A9, 3px 3px #6EC0A9, 3.25px 3.25px #6EC0A9, 3.5px 3.5px #6EC0A9, 3.75px 3.75px #6EC0A9, 4px 4px #6EC0A9, 4.25px 4.25px #6EC0A9, 4.5px 4.5px #6EC0A9, 4.75px 4.75px #6EC0A9, 5px 5px #6EC0A9, 5.25px 5.25px #6EC0A9, 5.5px 5.5px #6EC0A9, 5.75px 5.75px #6EC0A9, 6px 6px #6EC0A9;
+  animation-delay: 0.15s;
+}
+.playful span:nth-child(5n) {
+  color: #b0b1d1;
+  text-shadow: 0.25px 0.25px #8068af, 0.5px 0.5px #8068af, 0.75px 0.75px #8068af, 1px 1px #8068af, 1.25px 1.25px #8068af, 1.5px 1.5px #8068af, 1.75px 1.75px #8068af, 2px 2px #8068af, 2.25px 2.25px #8068af, 2.5px 2.5px #8068af, 2.75px 2.75px #8068af, 3px 3px #8068af, 3.25px 3.25px #8068af, 3.5px 3.5px #8068af, 3.75px 3.75px #8068af, 4px 4px #8068af, 4.25px 4.25px #8068af, 4.5px 4.5px #8068af, 4.75px 4.75px #8068af, 5px 5px #8068af, 5.25px 5.25px #8068af, 5.5px 5.5px #8068af, 5.75px 5.75px #8068af, 6px 6px #8068af;
+  animation-delay: 0.4s;
+}
+.playful span:nth-child(7n), .playful span:nth-child(11n) {
+  color: #FF9C55;
+  text-shadow: 0.25px 0.25px #572b9e, 0.5px 0.5px #572b9e, 0.75px 0.75px #572b9e, 1px 1px #572b9e, 1.25px 1.25px #572b9e, 1.5px 1.5px #572b9e, 1.75px 1.75px #572b9e, 2px 2px #572b9e, 2.25px 2.25px #572b9e, 2.5px 2.5px #572b9e, 2.75px 2.75px #572b9e, 3px 3px #572b9e, 3.25px 3.25px #572b9e, 3.5px 3.5px #572b9e, 3.75px 3.75px #572b9e, 4px 4px #572b9e, 4.25px 4.25px #572b9e, 4.5px 4.5px #572b9e, 4.75px 4.75px #572b9e, 5px 5px #572b9e, 5.25px 5.25px #572b9e, 5.5px 5.5px #572b9e, 5.75px 5.75px #572b9e, 6px 6px #572b9e;
+  animation-delay: 0.25s;
+}
+@keyframes scatter {
+  0% {
+    top: 0;
+  }
+  50% {
+    top: -10px;
+  }
+  100% {
+    top: 0;
+  }
+}
+
+h1 {
+  font-size: 150px;
+  font-family: "Archivo Black", "Archivo", sans-serif;
+  display: block;
+width: 300px;
+max-width: 60vw;
+min-height: 80px;
+  text-align: center;
+  margin: auto;
+
+  
 }

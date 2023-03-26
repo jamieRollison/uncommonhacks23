@@ -60,36 +60,26 @@ function CreateForm() {
   }, []);
 
   return (
-    <>
-      <Share link={link} isOpen={modal} setIsOpen={setModal} to={to} />
-      <div className="flex flex-col mt-40">
-        <div className="flex flex-col items-center">
-          <img
-            className="w-40"
-            src={LetterStack}
-            alt="stack of envelopes"
-          ></img>
-          <h1 className="font-libre text-white text-7xl pr-2">
-            Create your future
-          </h1>{" "}
-          {mapVar[timer]}
-        </div>
-        <div>
-          <h2 className="text-indigo-200 font-libre text-xl text-center mt-2">
-            Send a letter to your special someone, where they will have their
-            very <br />
-            own note hosted on the internet.
-          </h2>
-        </div>
-        <div className="mt-4 flex flex-col items-center">
-          <h1 className="mt-2 mb-2 font-libre text-2xl text-indigo-300">
-            Choose a cool, awesome font.
-          </h1>
-          <select
-            className="form-select w-80 font-serif rounded h-10 px-2"
-            value={font}
-            onChange={handleOnChange}
-          >
+   <>
+    <Share link={link} isOpen={modal} setIsOpen={setModal} to={to} />
+    <div className="flex flex-col pt-20">
+        
+      <div className="flex flex-col items-center">
+      <img className="w-40"src={LetterStack} alt="stack of envelopes"></img>
+        <h1 className="font-libre text-white text-7xl pr-2">
+          Create your future
+        </h1>{" "}
+        {mapVar[timer]}
+      </div>
+      <div>
+        <h2 className="text-indigo-200 font-libre text-xl text-center mt-2">
+          Send a letter to your special someone, where they will have their very <br />
+          own note hosted on the internet.
+        </h2>
+      </div>
+      <div className="mt-4 flex flex-col items-center">
+        <h1 className="mt-2 mb-2 font-libre text-2xl text-indigo-300">Choose a cool, awesome font.</h1>
+        <select className="form-select w-80 font-serif rounded h-10 px-2" value={font} onChange={handleOnChange}>
             <option value="selectFont">Select a font</option>
             <option value="Libre Baskerville">Libre Baskerville</option>
             <option value="Delicious Handrawn">Handrawn</option>

@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import LetterStack from "../assets/LetterStack.png";
+import { createNote } from "../api";
+import { Note } from "../types";
 
 function CreateForm() {
   const vars = ["letter", "confession", "secret message"];
@@ -41,7 +43,6 @@ function CreateForm() {
   useEffect(() => {
     const interval = setInterval(() => {
       setTimer((timer) => (timer + 1) % 3);
-      console.log(timer);
     }, 4000);
     return () => clearInterval(interval);
   }, []);
@@ -83,23 +84,36 @@ function CreateForm() {
       </div>
       
     </div>
-    <form>
+    <form id='noteform' onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
+            event.preventDefault();
+            const form = event.currentTarget;
+            const formData = new FormData(form);
+            const note: Note = {
+              to: formData.get('to') as string,
+              from: formData.get('from') as string,
+              title: formData.get('title') as string,
+              content: formData.get('content') as string,
+              font: font as string,
+            };
+            createNote(note);
+        }}>
     <div className="flex flex-col">
         <label className="text-white mt-4 pb-2" htmlFor="to">Deliver a message to:</label>
-        <input id="to" type="text" placeholder="My Dog, Lucy" className="appearance-none bg-transparent border-b border-indigo-200 w-full text-white font-sans mb-2 focus:outline-none pl-1" />
+        <input name='to'id="to" type="text" placeholder="My Dog, Lucy" className="appearance-none bg-transparent border-b border-indigo-200 w-full text-white font-sans mb-2 focus:outline-none pl-1" />
         <label className="text-white pt-2"htmlFor="from">This is a lovely letter from:</label>
-        <input id="from" type="text" placeholder="Anonymous..." className="appearance-none bg-transparent border-b border-indigo-200 w-full text-white font-sans focus:outline-none mb-2 pl-1" />
+        <input name='from'id="from" type="text" placeholder="Anonymous..." className="appearance-none bg-transparent border-b border-indigo-200 w-full text-white font-sans focus:outline-none mb-2 pl-1" />
         
         
         <label htmlFor="title" className="text-white mt-4" >A Creative Title:</label>
-        <input id="title" type="text" placeholder="Welcome to your tape...." className="appearance-none bg-transparent border-b border-indigo-200 h-10 text-4xl w-full text-white font-sans mb-2 focus:outline-none" style={{
+        <input name='title'id="title" type="text" placeholder="Welcome to your tape...." className="appearance-none bg-transparent border-b border-indigo-200 h-10 text-4xl w-full text-white font-sans mb-2 focus:outline-none" style={{
             fontFamily: libreVisible ? "Libre Baskerville" : handrawnVisible ? "Delicious Handrawn" : alkatraVisible ? "Alkatra" : redactedVisible ? "Redacted Script" : robotoVisible ? "Roboto" : "selectFont"
         }} />
         <label htmlFor="content" className="text-white mt-4">Content:</label>
-        <textarea id="content" placeholder="I love you so much, Lucy!" className=" text-xl h-40 appearance-none bg-transparent w-full text-white mb-2 rounded border-[1px] border-indigo-100 p-2 focus:outline-none" style={{
+        <textarea name='content'id="content" placeholder="I love you so much, Lucy!" className=" text-xl h-40 appearance-none bg-transparent w-full text-white mb-2 rounded border-[1px] border-indigo-100 p-2 focus:outline-none" style={{
             fontFamily: libreVisible ? "Libre Baskerville" : handrawnVisible ? "Delicious Handrawn" : alkatraVisible ? "Alkatra" : redactedVisible ? "Redacted Script" : robotoVisible ? "Roboto" : "selectFont"
         }}></textarea>
-        <button className="my-8 bg-indigo-700 px-6 py-3 text-lg font-serif leading normal text-white">
+        <button form='noteform' type='submit' className="my-8 bg-indigo-700 px-6 py-3 text-lg font-serif leading normal text-white"
+        >
             Generate your Letter
         </button>
 

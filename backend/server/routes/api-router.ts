@@ -30,8 +30,8 @@ router.get("/notes", async (req, res) => {
 
 router.post("/notes", async (req, res) => {
   console.log(req.body);
-  const { title, from, to, content } = req.body;
-  if (!title || !from || !to || !content) {
+  const { title, from, to, content, font } = req.body;
+  if (!title || !from || !to || !content || !font) {
     res.status(400).send("Missing required fields");
     return;
   }
@@ -41,7 +41,10 @@ router.post("/notes", async (req, res) => {
     return;
   }
 
-  const content_id = await Content.create(content)
+  const content_id = await Content.create({
+    text: content,
+    font: font,
+  })
     .then((content: any) => content._id)
     .catch((err: any) => {
       console.log(err);
@@ -56,7 +59,6 @@ router.post("/notes", async (req, res) => {
   })
     .then((note: any) => {
       const { _id } = note;
-      console.log(_id)
       shortenLink('/api/notes/'+_id).then((short: any) => {
         console.log(short);
         res.json(short);

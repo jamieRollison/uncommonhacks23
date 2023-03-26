@@ -135,7 +135,8 @@ function CreateForm() {
             .then((link) => {
               setNegative(false);
               setModal(true);
-              return `localhost:5173/${link}`;
+              console.log(`${process.env.NOW_URL}/${link}`)
+              return `${process.env.NOW_URL}/${link}`;
             })
             .catch((e) => {
               console.log(e);

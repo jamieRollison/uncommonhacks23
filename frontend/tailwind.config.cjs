@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
-  theme:{
+  theme: {
     fontFamily: {
       libre: ["Libre Baskervile", "serif"],
       handrawn: ['Delicious Handrawn', "cursive"],
@@ -10,11 +10,11 @@ module.exports = {
       roboto: ["Roboto Mono", "monoscript"]
     },
     backgroundSize: {
-      "auto": "auto",
-      "cover": "cover",
-      "contain": "contain",
-      "before": "100% 100%",
-      "after": "0% 100%",
+      auto: "auto",
+      cover: "cover",
+      contain: "contain",
+      before: "100% 100%",
+      after: "0% 100%",
     },
     extend: {
       colors: {
@@ -39,7 +39,5 @@ module.exports = {
       },
     },
   },
-  plugins: [
-    require('tailwindcss-3d')
-  ],
+  plugins: [require("tailwindcss-3d")],
 };

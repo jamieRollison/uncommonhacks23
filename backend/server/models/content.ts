@@ -29,13 +29,13 @@ const contentSchema = new mongoose.Schema({
     type: String,
     required: true,
     enum: [
-      "Libre Baskervill",
+      "Libre Baskerville",
       "Delicious Handrawn",
       "Alkatra",
       "Redacted Script",
-      "Roboto"
-    ]
-  }
+      "Roboto",
+    ],
+  },
 });
 
 const Content = mongoose.model("Content", contentSchema);

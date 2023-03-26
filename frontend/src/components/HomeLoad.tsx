@@ -22,12 +22,12 @@ function HomeLoad() {
       </p>
       <div>
         <a href="/create">
-        <button
-          type="button"
-          className=" mt-6 rounded bg-indigo-400 px-6 pt-2.5 pb-2 text-lg font-libre leading-normal text-white transition duration-150 ease-in-out hover:bg-indigo-500 focus:bg-indigo-600 focus:outline-none focus:ring-0 active:bg-indigo-700"
-        >
-          Send your note.
-        </button>
+          <button
+            type="button"
+            className=" mt-6 rounded bg-indigo-400 px-6 pt-2.5 pb-2 text-lg font-libre leading-normal text-white transition duration-150 ease-in-out hover:bg-indigo-500 focus:bg-indigo-600 focus:outline-none focus:ring-0 active:bg-indigo-700"
+          >
+            Send your note.
+          </button>
         </a>
       </div>
     </div>

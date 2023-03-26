@@ -1,7 +1,6 @@
 import express from "express";
 import { Note, Content, Link } from "../models";
-import {shortenLink} from "../utils";
-const monkeylearn = require("monkeylearn");
+import {negativeSentiment, shortenLink} from "../utils";
 
 const router = express.Router();
 
@@ -36,6 +35,12 @@ router.post("/notes", async (req, res) => {
     res.status(400).send("Missing required fields");
     return;
   }
+
+  if (await negativeSentiment([content, title])) {
+    res.status(401).send("Be nice! This platform is for positivity only.");
+    return;
+  }
+
   const content_id = await Content.create(content)
     .then((content: any) => content._id)
     .catch((err: any) => {
@@ -81,19 +86,6 @@ router.get("/content/:id", async (req, res) => {
   }
   const content = await Content.findById(id);
   res.json(content);
-});
-
-router.get("/analysis", async (req, res) => {
-  const ml = new monkeylearn(process.env.AI_KEY);
-  const model_id = "cl_pi3C7JiL";
-  const data = ["I am neutral towards this product!"];
-  const a = await ml.classifiers
-    .classify(model_id, data)
-    .then((analysis: any) => {
-      console.log(analysis.body[0].classifications);
-      return analysis.body[0].classifications[0];
-    });
-  res.json(a);
 });
 
 router.post("/shorten", async (req, res) => {

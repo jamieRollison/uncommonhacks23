@@ -9,7 +9,7 @@ function CreateForm() {
   const colors = ["#D6D3F0", "#D8D78F", "#B0F2B4"];
   const [timer, setTimer] = useState(0);
   const [modal, setModal] = useState(false);
-  const [link, setLink] = useState("localhost:5173/hardcode");
+  const [link, setLink] = useState("");
   const [to, setTo] = useState("your friend");
 
   const [font, setFont] = useState("selectFont")

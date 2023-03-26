@@ -140,7 +140,12 @@ function CreateForm() {
             })
             .catch((e) => {
               console.log(e);
+              if (e === "Error: Request failed with status code 401") {
               setNegative(true);
+              } else {
+                setNegative(false);
+                console.log("Something went wrong")
+              }
             })) as string;
         }}
       >

@@ -14,3 +14,12 @@ export const createNote = async (note: Note) => {
   const { data } = await api.post('/notes', note);
   return data;
 }
+
+export const viewNote = async () => {
+  const note = await api.get('/view').then((res) => res.data);
+  const content = await api.get(`/content/${note.content}`)
+  return {
+    ...note,
+    content: content
+  }
+}

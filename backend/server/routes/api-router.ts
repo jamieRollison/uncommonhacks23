@@ -8,6 +8,17 @@ router.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
+router.get('/view', async (req, res) => {
+  const note = await Note.findById("641f63a7c6ec693877879f84");
+  res.send(note?.toJSON());
+});
+
+router.get('/content/:id', async (req, res) => {
+  const {id} = req.params;
+  const content = await Content.findById(id);
+  res.send(content?.toJSON());
+});
+
 router.get("/notes", async (req, res) => {
   try {
     const notes = await Note.find();

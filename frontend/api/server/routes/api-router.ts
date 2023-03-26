@@ -1,6 +1,6 @@
 import express from "express";
 import { Note, Content, Link } from "../models";
-import { negativeSentiment, shortenLink } from "../utils";
+import { negativeSentiment, shortenLink, getNote } from "../utils";
 import mongoose from "mongoose";
 
 const router = express.Router();
@@ -105,14 +105,7 @@ router.post("/notes", async (req, res) => {
 });
 
 router.get("/notes/:id", async (req, res) => {
-  mongoose
-  .connect(process.env.MONGO_URI as string)
-  .then(() => {
-    console.log("Connected to MongoDB");
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+  
   res.setHeader('Content-Type', 'application/json');
   res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
   const { id } = req.params;
@@ -120,7 +113,7 @@ router.get("/notes/:id", async (req, res) => {
     res.status(400).send("Missing required fields");
     return;
   }
-  const note = await Note.findById(id);
+  const note = await getNote(id);
   res.json(note);
 });
 
@@ -182,11 +175,12 @@ router.get("/:short", async (req, res) => {
   console.log(short);
   const long = await Link.findOne({ short })
     .then((link: any) => {
-      res.redirect(link.long);
+      getNote(link.long.find((l: any) => l.includes("/api/notes/")).split("/api/notes/")[1]);
     })
     .catch((err: any) => {
       res.status(500).send(err);
     });
+    return res.json(long);
 });
 
 export default router;

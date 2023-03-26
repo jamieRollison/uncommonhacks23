@@ -1,4 +1,5 @@
-import { Link } from "../models";
+import { Link, Note } from "../models";
+import mongoose from "mongoose";
 const monkeylearn = require("monkeylearn");
 
 export const shortenLink = async (long: string) =>
@@ -18,3 +19,15 @@ export const negativeSentiment = async (text: string[]) => {
     classification.tag_name === "Negative" && classification.confidence > 0.5
   );
 };
+
+export const getNote = async (id: string) => {
+  mongoose
+  .connect(process.env.MONGO_URI as string)
+  .then(() => {
+    console.log("Connected to MongoDB");
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+  return await Note.findById(id);
+}

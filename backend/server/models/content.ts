@@ -29,10 +29,11 @@ const contentSchema = new mongoose.Schema({
     type: String,
     required: true,
     enum: [
+      "librebaskerville",
       "delicioushandrawn",
       "alkatra",
-      "librebaskerville",
-      "helvetica"
+      "redactedscript",
+      "robotomono"
     ]
   }
 });

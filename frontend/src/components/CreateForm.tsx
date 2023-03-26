@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import LetterStack from "../assets/LetterStack.png";
 import { createNote } from "../api";
-import { Note } from "../types";
+import { PostNoteI } from "../types";
 import { Share } from "../components/Share";
 
 function CreateForm() {
@@ -19,6 +19,8 @@ function CreateForm() {
   const [alkatraVisible, setAlkatraVisible] = useState(false);
   const [redactedVisible, setRedactedVisible] = useState(false);
   const [robotoVisible, setRobotoVisible] = useState(false);
+
+  const [negative, setNegative] = useState(false);
 
   useEffect(() => {
     font === "Libre Baskerville"
@@ -121,7 +123,7 @@ function CreateForm() {
           event.preventDefault();
           const form = event.currentTarget;
           const formData = new FormData(form);
-          const note: Note = {
+          const note: PostNoteI = {
             to: formData.get("to") as string,
             from: formData.get("from") as string,
             title: formData.get("title") as string,
@@ -129,8 +131,16 @@ function CreateForm() {
             font: font as string,
           };
           setTo(note.to);
-          setLink("localhost:5173/" + (await createNote(note)));
-          setModal(true);
+          const short = (await createNote(note)
+            .then((link) => {
+              setNegative(false);
+              setModal(true);
+              return `localhost:5173/${link}`;
+            })
+            .catch((e) => {
+              console.log(e);
+              setNegative(true);
+            })) as string;
         }}
       >
         <div className="flex flex-col">
@@ -200,6 +210,11 @@ function CreateForm() {
                 : "selectFont",
             }}
           ></textarea>
+          {negative && (
+            <p className="text-red-500">
+              Be nice! Letters are supposed to be positive!
+            </p>
+          )}
           <button
             form="noteform"
             type="submit"

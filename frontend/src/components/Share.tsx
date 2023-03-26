@@ -23,8 +23,8 @@ export const Share = ({ isOpen, setIsOpen, link, to }: ModalProps) => {
       className="w-1/3 h-1/3 items-center justify-center bg-indigo-300 mx-auto rounded-xl flex flex-col absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
     >
       <div className="flex flex-col items-center justify-center">
-        <h1 className="text-3xl mb-5 font-libre font-bold text-purple-900">
-          Share this letter with {to}
+        <h1 className="text-3xl mb-5 font-libre text-center font-bold text-purple-900">
+          Share this letter {to ? `with ${to}` : ""}
         </h1>
       </div>
 

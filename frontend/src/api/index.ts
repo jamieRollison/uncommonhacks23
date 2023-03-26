@@ -23,3 +23,16 @@ export const viewNote = async () => {
     content: content,
   };
 };
+export const getNote = async (id: string) => {
+  const { data } = await api.get(`/notes/${id}`);
+  const content = await getContent(data.content);
+  return {
+    ...data,
+    content,
+  };
+}
+
+export const getContent = async (id: string) => {
+  const { data } = await api.get(`/content/${id}`);
+  return data;
+}

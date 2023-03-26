@@ -111,6 +111,7 @@ router.get("/:short", async (req, res) => {
   console.log(short);
   const long = await Link.findOne({ short })
     .then((link: any) => {
+      console.log(link);
       res.redirect(link.long);
     })
     .catch((err: any) => {

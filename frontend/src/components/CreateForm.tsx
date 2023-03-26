@@ -54,7 +54,7 @@ function CreateForm() {
   return (
    <>
     <Share link={link} isOpen={modal} setIsOpen={setModal} to={to} />
-    <div className="flex flex-col mt-40">
+    <div className="flex flex-col pt-20">
         
       <div className="flex flex-col items-center">
       <img className="w-40"src={LetterStack} alt="stack of envelopes"></img>

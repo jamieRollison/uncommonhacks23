@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, createRef, RefObject } from "react";
 import LetterStack from "../assets/LetterStack.png";
+import Canvas from "./Canvas";
 
 function CreateForm() {
   const vars = ["letter", "confession", "secret message"];
@@ -11,6 +12,16 @@ function CreateForm() {
     </span>
   ));
 
+  const [width, setWidth] = useState(0)
+  const canvas_ref = createRef();
+
+  useEffect(() => {
+    if(canvas_ref.current){
+      setWidth((canvas_ref.current as any).getBoundingClientRect().width)
+    }
+  }, [])
+
+
   useEffect(() => {
     const interval = setInterval(() => {
       setTimer((timer) => (timer + 1) % 3);
@@ -18,6 +29,14 @@ function CreateForm() {
     }, 4000);
     return () => clearInterval(interval);
   }, []);
+
+  const setup = (p5: any) => {
+    p5.createCanvas(width, 100).parent('canvas');
+  };
+
+  const draw = (p5: any) => {
+    p5.background(0, 0, 0, 0);
+  };
 
   return (
    <>
@@ -48,11 +67,12 @@ function CreateForm() {
         <label htmlFor="title" className="text-white mt-4">Title:</label>
         <input id="title" type="text" placeholder="Welcome to your tape" className="appearance-none bg-transparent border-b border-indigo-200 h-8 text-xl w-full text-white font-sans mb-2 focus:outline-none" />
         <label htmlFor="content" className="text-white mt-4">Content:</label>
-        <canvas id="content" placeholder="I love you so much, Lucy!" className="h-40 appearance-none bg-transparent border-none w-full text-white font-sans mb-2"></canvas>
+        {/* <canvas id="content" placeholder="I love you so much, Lucy!" className="h-40 appearance-none bg-transparent border-none w-full text-white font-sans mb-2"></canvas> */}
+        <div className='border-[1px] mb-10 mt-3 rounded border-white' id='canvas' ref={canvas_ref as any}/>
+        <Canvas setup={setup} draw={draw}/>
         <button className="rounded bg-indigo-700 px-6 py-3 text-lg font-serif leading normal text-white">
             Generate your Letter
         </button>
-
     </div>
   </form>
 </>

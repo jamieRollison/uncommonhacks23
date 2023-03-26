@@ -131,6 +131,7 @@ function CreateForm() {
               console.log(e);
               setNegative(true);
             })) as string;
+          setLink(short);
         }}
       >
         <div className="flex flex-col">

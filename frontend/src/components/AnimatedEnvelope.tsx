@@ -7,7 +7,7 @@ function AnimatedEnvelope() {
       <div className="letter">
         <p className="font-serif">hi, you got a note!</p>
       </div>
-  </div>
+    </div>
   );
 }
 

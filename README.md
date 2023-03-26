@@ -16,23 +16,6 @@ Letra is simple, but the possibilities are endless! Through Letra, users are abl
 ## How we built it
 Letra is a web-app that uses HTML and Tailwind for its styling, with the support of Svelte as our front-end framework. The Letra team utilizes MongoDB to deploy a database that pulls and stores information about recipients, senders, and the contents of each respective letter. TypeScript is the primary language used for Letra's backend.
 
-## Challenges we ran into
-In the process of developing Letra, the team faced various roadblocks such as:
-* Using TypeScript: This was the team's first time using TypeScript for web-app development, and much of the time was spent making sure everything was type-safe
-* Finding AI Models for sentient analysis that were free: Many AI models required a subscription, which is something we could not afford for the sake of a hackathon.
-* Using Express.js: Our backend developer had the most experience with Express.js, but struggled with deploying on a serverless deployment platform.
-* Animation elements: This was the first time our front-end team delved into using animation elements for a web-app. It proved to be a slight learning curve, but in the end, was a worthwhile learning experience and integrated well with the project.
-* Using Tailwind: I was personally accustomed to using HTML/CSS in the past, so adapting to Tailwind and slowly learning the shorthand was a steep learning curve for me, particularly since it had been a while since I worked with HTML.
-
-## Accomplishments that we're proud of
-The challenges that the team had encountered throughout development are also the accomplishments that the team is proudest of. 
-Overall, Letra is the summation of our collective struggles and challenges, and is by far our proudest accomplishment from this hackathon. 
-
-## What we learned
-* How to use Tailwind
-* How to deploy on a serverless deployment platform
-* How to incorporate dynamic features on a web-app (specifically animated elements)
-* How to implement an AI API for text analysis
 
 ## What's next for Letra?
 In future versions of Letra, the team hopes to implement more customization features. Among these features are:

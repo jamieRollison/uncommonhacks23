@@ -1,39 +1,34 @@
-import { viewNote } from "../../api"
-import paperBg from "../../assets/Paper.png"
+import { viewNote } from "../../api";
+import paperBg from "../../assets/Paper.png";
 import AnimatedEnvelope from "../../components/AnimatedEnvelope";
 import Delayed from "../../components/Delayed";
-import {Content } from "../../types"
+import { Content } from "../../types";
 import { useState } from "react";
 
 interface ViewProps {
-    title: string,
-    to: string,
-    from: string,
-    content: Content, 
+  title: string;
+  to: string;
+  from: string;
+  content: Content;
 }
 
-const View = ({
-    title,
-    to,
-    from,
-    content, 
-}: ViewProps) => {
-    // returning text
-    const note = viewNote().then(res => {
-        console.log(res);
-        return res;
-    });
+const View = ({ title, to, from, content }: ViewProps) => {
+  // returning text
+  const note = viewNote().then((res) => {
+    console.log(res);
+    return res;
+  });
 
-    const [isAnimationVisible, setIsAnimationVisible] = useState(true);
+  const [isAnimationVisible, setIsAnimationVisible] = useState(true);
 
-    setTimeout(() => {
-        setIsAnimationVisible(false);
-    }, 5000);
+  setTimeout(() => {
+    setIsAnimationVisible(false);
+  }, 5000);
 
-    return (
-        <>
-        {isAnimationVisible ? <AnimatedEnvelope /> : <> </>}
-        <Delayed waitBeforeShow={5000}>
+  return (
+    <>
+      {isAnimationVisible ? <AnimatedEnvelope /> : <> </>}
+      <Delayed waitBeforeShow={5000}>
         <div className="relative text-black">
             <img src={paperBg} alt="paper background" className = "w-[600px]"/>
             <div className= "flex-col flex-wrap">
@@ -65,9 +60,9 @@ const View = ({
             </div>
      
         </div>
-        </Delayed>
+      </Delayed>
     </>
-    )
-}
+  );
+};
 
-export default View
+export default View;

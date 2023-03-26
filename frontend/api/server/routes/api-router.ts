@@ -11,6 +11,8 @@ router.get("/", (req, res) => {
 });
 
 router.get("/notes", async (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
   try {
     const notes = await Note.find();
     res.json(notes);

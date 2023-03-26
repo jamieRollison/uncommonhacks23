@@ -28,12 +28,12 @@ const View = ({
 
     setTimeout(() => {
         setIsAnimationVisible(false);
-    }, 8000);
+    }, 5000);
 
     return (
         <>
         {isAnimationVisible ? <AnimatedEnvelope /> : <> </>}
-        <Delayed waitBeforeShow={8000}>
+        <Delayed waitBeforeShow={5000}>
         <div className="relative text-black">
             <img src={paperBg} alt="paper background" className = "w-[600px]"/>
             <div className= "flex-col flex-wrap">

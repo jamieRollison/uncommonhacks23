@@ -2,11 +2,15 @@ import { useEffect, useState } from "react";
 import LetterStack from "../assets/LetterStack.png";
 import { createNote } from "../api";
 import { Note } from "../types";
+import { Share } from "../components/Share";
 
 function CreateForm() {
   const vars = ["letter", "confession", "secret message"];
   const colors = ["#D6D3F0", "#D8D78F", "#B0F2B4"];
   const [timer, setTimer] = useState(0);
+  const [modal, setModal] = useState(false);
+  const [link, setLink] = useState("");
+  const [to, setTo] = useState("your friend");
 
   const [font, setFont] = useState("selectFont")
 
@@ -49,7 +53,7 @@ function CreateForm() {
 
   return (
    <>
-   
+    <Share link={link} isOpen={modal} setIsOpen={setModal} to={to} />
     <div className="flex flex-col mt-40">
         
       <div className="flex flex-col items-center">
@@ -84,7 +88,7 @@ function CreateForm() {
       </div>
       
     </div>
-    <form id='noteform' onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
+    <form id='noteform' onSubmit={ async (event: React.FormEvent<HTMLFormElement>) => {
             event.preventDefault();
             const form = event.currentTarget;
             const formData = new FormData(form);
@@ -95,7 +99,9 @@ function CreateForm() {
               content: formData.get('content') as string,
               font: font as string,
             };
-            createNote(note);
+            setTo(note.to);
+            setLink('localhost:5173/' + await createNote(note));
+            setModal(true);
         }}>
     <div className="flex flex-col">
         <label className="text-white mt-4 pb-2" htmlFor="to">Deliver a message to:</label>

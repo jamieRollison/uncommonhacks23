@@ -1,64 +1,35 @@
 import express from "express";
 import { Note, Content, Link } from "../models";
-import { negativeSentiment, shortenLink, getNote } from "../utils";
-import mongoose from "mongoose";
+import { negativeSentiment, shortenLink, getNote, connectDB } from "../utils";
 
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  mongoose
-  .connect(process.env.MONGO_URI as string)
-  .then(() => {
-    console.log("Connected to MongoDB");
-  })
-  .catch((err) => {
-    console.log(err);
-  });
   res.setHeader('Content-Type', 'text/html');
   res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
   res.send("Hello World!");
 });
 
 router.get("/content/:id", async (req, res) => {
-  mongoose
-  .connect(process.env.MONGO_URI as string)
-  .then(() => {
-    console.log("Connected to MongoDB");
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+  await connectDB();
   const { id } = req.params;
   const content = await Content.findById(id);
   res.send(content?.toJSON());
 });
 
 router.get("/notes", async (req, res) => {
-  mongoose
-  .connect(process.env.MONGO_URI as string)
-  .then(() => {
-    console.log("Connected to MongoDB");
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+  await connectDB();
   try {
     const notes = await Note.find();
     res.json(notes);
   } catch (err) {
     console.log(err);
+    res.status(500).send(err);
   }
 });
 
 router.post("/notes", async (req, res) => {
-  mongoose
-  .connect(process.env.MONGO_URI as string)
-  .then(() => {
-    console.log("Connected to MongoDB");
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+  await connectDB();
   res.setHeader('Content-Type', 'application/json');
   res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
   console.log(req.body);
@@ -93,7 +64,7 @@ router.post("/notes", async (req, res) => {
   })
     .then((note: any) => {
       const { _id } = note;
-      shortenLink("/api/notes/" + _id).then((short: any) => {
+      shortenLink(_id).then((short: any) => {
         console.log(short);
         res.json(short);
       });
@@ -105,7 +76,6 @@ router.post("/notes", async (req, res) => {
 });
 
 router.get("/notes/:id", async (req, res) => {
-  
   res.setHeader('Content-Type', 'application/json');
   res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
   const { id } = req.params;
@@ -118,14 +88,7 @@ router.get("/notes/:id", async (req, res) => {
 });
 
 router.get("/content/:id", async (req, res) => {
-  mongoose
-  .connect(process.env.MONGO_URI as string)
-  .then(() => {
-    console.log("Connected to MongoDB");
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+  await connectDB();
   res.setHeader('Content-Type', 'application/json');
   res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
   const { id } = req.params;
@@ -138,14 +101,6 @@ router.get("/content/:id", async (req, res) => {
 });
 
 router.post("/shorten", async (req, res) => {
-  mongoose
-  .connect(process.env.MONGO_URI as string)
-  .then(() => {
-    console.log("Connected to MongoDB");
-  })
-  .catch((err) => {
-    console.log(err);
-  });
   res.setHeader('Content-Type', 'application/json');
   res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
   const { long } = req.body;
@@ -158,14 +113,9 @@ router.post("/shorten", async (req, res) => {
 });
 
 router.get("/:short", async (req, res) => {
-  mongoose
-  .connect(process.env.MONGO_URI as string)
-  .then(() => {
-    console.log("Connected to MongoDB");
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+  await connectDB();
+  console.log("short")
+  
   res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
   const { short } = req.params;
   if (!short) {
@@ -173,14 +123,15 @@ router.get("/:short", async (req, res) => {
     return;
   }
   console.log(short);
-  const long = await Link.findOne({ short })
-    .then((link: any) => {
-      getNote(link.long.find((l: any) => l.includes("/api/notes/")).split("/api/notes/")[1]);
-    })
+  const full = await Link.findOne({ short })
+    .then(async (link: any) => 
+      link.long
+    )
     .catch((err: any) => {
       res.status(500).send(err);
     });
-    return res.json(long);
+    console.log(full)
+    return await getNote(full);
 });
 
 export default router;

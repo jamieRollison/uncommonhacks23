@@ -48,7 +48,7 @@ const View = () => {
       <Share
         isOpen={modal}
         setIsOpen={setModal}
-        link={`${process.env.NOW_URL}/${short}`}
+        link={`${window.location.origin}/${short}`}
         to=""
       />
       {isAnimationVisible ? <AnimatedEnvelope /> : <> </>}

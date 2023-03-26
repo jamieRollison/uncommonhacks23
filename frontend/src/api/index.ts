@@ -2,9 +2,10 @@ import axios from "axios";
 import { PostNoteI } from "../types";
 
 const api = axios.create({
-  baseURL: `${process.env.NOW_URL}/api`,
+  baseURL: `${import.meta.env.DEV ? 'localhost:3000' : window.location.origin}/api`,
 });
 
+console.log(window.location.origin);
 export const getNotes = async () => {
   const { data } = await api.get("/notes");
   return data;

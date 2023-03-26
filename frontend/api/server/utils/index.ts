@@ -2,12 +2,25 @@ import { Link, Note } from "../models";
 import mongoose from "mongoose";
 const monkeylearn = require("monkeylearn");
 
-export const shortenLink = async (long: string) =>
+export const connectDB = async () => {
+  await mongoose
+  .connect(process.env.MONGO_URI as string)
+  .then(() => {
+    console.log("Connected to MongoDB");
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+}
+
+export const shortenLink = async (long: string) => {
+  connectDB();
   await Link.create({ long })
     .then((link: any) => link.short)
     .catch((err: any) => {
       throw err;
     });
+  }
 
 export const negativeSentiment = async (text: string[]) => {
   const ml = new monkeylearn(process.env.AI_KEY);
@@ -21,13 +34,7 @@ export const negativeSentiment = async (text: string[]) => {
 };
 
 export const getNote = async (id: string) => {
-  mongoose
-  .connect(process.env.MONGO_URI as string)
-  .then(() => {
-    console.log("Connected to MongoDB");
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+  await connectDB();
+  console.log(id)
   return await Note.findById(id);
 }

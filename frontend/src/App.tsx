@@ -9,24 +9,11 @@ import About from "./pages/about";
 import { Content } from "./types";
 
 function App() {
-  const content: Content = {
-    text: "screaming and crying and throwing up ",
-  };
   return (
     <BrowserRouter>
       <Routes>
         <Route index element={<Home />} />
-        <Route
-          path="/view"
-          element={
-            <View
-              title="First Letter"
-              from="Anonymous"
-              to="Ellie"
-              content={content}
-            />
-          }
-        />
+        <Route path="/:short" element={<View />} />
         <Route path="/create" element={<Create />} />
         <Route path="/about" element={<About />} />
       </Routes>

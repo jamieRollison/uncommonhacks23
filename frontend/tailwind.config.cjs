@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     fontFamily: {
       libre: ["Libre Baskervile", "serif"],
-      handrawn: ['Delicious Handrawn', "cursive"],
+      handrawn: ["Delicious Handrawn", "cursive"],
       alkatra: ["Alkatra", "cursive"],
       redacted:["Redacted Script", "cursive"],
       roboto: ["Roboto Mono", "monoscript"],

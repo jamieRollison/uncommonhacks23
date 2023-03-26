@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Note, Content } from "../types";
+import { PostNoteI } from "../types";
 
 const api = axios.create({
   baseURL: "http://localhost:3000/api",
@@ -10,17 +10,20 @@ export const getNotes = async () => {
   return data;
 };
 
-export const createNote = async (note: Note) => {
-  const { data } = await api.post("/notes", note);
+export const createNote = async (note: PostNoteI) => {
+  const { data } = await api.post("/notes", note).catch((err) => {
+    // console.log(err)
+    throw err;
+  });
   return data;
 };
 
-export const viewNote = async () => {
-  const note = await api.get("/view").then((res) => res.data);
+export const viewNote = async (short: string) => {
+  const note = await api.get(`/${short}`).then((res) => res.data);
   const content = await api.get(`/content/${note.content}`);
   return {
     ...note,
-    content: content,
+    content: content.data,
   };
 };
 export const getNote = async (id: string) => {
@@ -28,11 +31,11 @@ export const getNote = async (id: string) => {
   const content = await getContent(data.content);
   return {
     ...data,
-    content,
+    content: content.data,
   };
-}
+};
 
 export const getContent = async (id: string) => {
   const { data } = await api.get(`/content/${id}`);
   return data;
-}
+};

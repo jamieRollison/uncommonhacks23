@@ -6,5 +6,6 @@ export interface Note {
   title: string;
   from: string;
   to: string;
-  body: Content;
+  content: string;
+  font : string;
 }

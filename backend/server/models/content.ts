@@ -6,34 +6,34 @@ const contentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  color: {
-    type: String,
-    required: true,
-    enum: ["palegoldenrod",
-      "palegreen",
-      "paleturquoise",
-      "palevioletred",
-      "papayawhip",
-      "peachpuff",
-      "peru",
-      "pink",
-      "plum",
-      "powderblue",
-      "purple",
-      "rebeccapurple",
-      "black"],
-      // font faces: Delicious Handrawn, Alkatra, Libre Baskerville,Helvetica
-      // other fonts: idk
-  },
+  // color: {
+  //   type: String,
+  //   required: true,
+  //   enum: ["palegoldenrod",
+  //     "palegreen",
+  //     "paleturquoise",
+  //     "palevioletred",
+  //     "papayawhip",
+  //     "peachpuff",
+  //     "peru",
+  //     "pink",
+  //     "plum",
+  //     "powderblue",
+  //     "purple",
+  //     "rebeccapurple",
+  //     "black"],
+  //     // font faces: Delicious Handrawn, Alkatra, Libre Baskerville,Helvetica
+  //     // other fonts: idk
+  // },
   font: {
     type: String,
     required: true,
     enum: [
-      "librebaskerville",
-      "delicioushandrawn",
-      "alkatra",
-      "redactedscript",
-      "robotomono"
+      "Libre Baskervill",
+      "Delicious Handrawn",
+      "Alkatra",
+      "Redacted Script",
+      "Roboto"
     ]
   }
 });

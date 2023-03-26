@@ -2,7 +2,7 @@ import axios from "axios";
 import { PostNoteI } from "../types";
 
 const api = axios.create({
-  baseURL: "http://localhost:3000/api",
+  baseURL: `${process.env.NOW_URL}/api`,
 });
 
 export const getNotes = async () => {

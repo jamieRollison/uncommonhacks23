@@ -2,7 +2,7 @@ import axios from "axios";
 import { PostNoteI } from "../types";
 
 const api = axios.create({
-  baseURL: "https://letra-pwiqiljwl-jamierollison.vercel.app:3000/api",
+  baseURL: "https://localhost:3000/api",
 });
 
 export const getNotes = async () => {

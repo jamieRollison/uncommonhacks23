@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import cors from "cors";
+import path from "path";
 
 import router from "./routes/api-router";
 
@@ -19,8 +20,15 @@ mongoose
     console.log(err);
   });
 
-app.use("/api", router);
-
 app.listen(3000, () => {
   console.log("Server started on port 3000");
 });
+
+app.use("/api", require(path.join(__dirname, "api", "routes", "route.js")));
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../frontend", "build")));
+  app.get("/*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../frontend", "build", "index.html"));
+  });
+}

@@ -10,7 +10,7 @@ import { Content } from "./types";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/">
       <Routes>
         <Route index element={<Home />} />
         <Route path="/:short" element={<View />} />
